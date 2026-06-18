@@ -1,0 +1,40 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.Login;
+
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                username
+            </td>
+            <td>
+                <input asp-for="username" type="text" class="form-control" />
+            </td>
+
+            <td>
+                <span style="color:red" asp-validation-for="username"> </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                password
+            </td>
+            <td>
+                <input asp-for="password" type="password" class="form-control" />
+            </td>
+
+            <td>
+                <span style="color:red" asp-validation-for="password"> </span>
+            </td>
+        </tr>
+
+
+    </table>
+
+    <br />
+
+    <a asp-controller="Flights" asp-action="Index" class="btn btn-primary">Login</a>
+    <a asp-action="SignUp" asp-controller="User" class="btn btn-link">SignUp</a>
+</form>
+@TempData["Msg"]
