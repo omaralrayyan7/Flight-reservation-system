@@ -5,9 +5,7 @@ namespace FlightReservationApp_f.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-        }
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Flight> Flight { get; set; }
         public DbSet<Passenger> Passenger { get; set; }
@@ -19,12 +17,10 @@ namespace FlightReservationApp_f.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure decimal precision for Price
             modelBuilder.Entity<Flight>()
                 .Property(f => f.Price)
                 .HasColumnType("decimal(18,2)");
 
-            // Configure FlightPassenger relationships with cascade delete
             modelBuilder.Entity<FlightPassenger>()
                 .HasOne(fp => fp.Flight)
                 .WithMany(f => f.FlightPassengers)
