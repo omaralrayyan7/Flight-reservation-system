@@ -1,0 +1,66 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.Flight
+
+@{
+    ViewData["Title"] = "Edit Flight";
+}
+
+<h1>Edit Flight</h1>
+
+<h4>Flight</h4>
+<hr />
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
+    <!-- Flight Number (readonly because it's not editable) -->
+    <div class="form-group">
+        <label asp-for="FlightNumber" class="control-label"></label>
+        <input asp-for="FlightNumber" class="form-control" readonly /> <!-- Flight number is read-only -->
+    </div>
+
+    <!-- Origin (editable) -->
+    <div class="form-group">
+        <label asp-for="Origin" class="control-label"></label>
+        <input asp-for="Origin" class="form-control" /> <!-- Editable Origin -->
+    </div>
+
+    <!-- Destination (editable) -->
+    <div class="form-group">
+        <label asp-for="Destination" class="control-label"></label>
+        <input asp-for="Destination" class="form-control" /> <!-- Editable Destination -->
+    </div>
+
+    <!-- Departure Time (editable) -->
+    <div class="form-group">
+        <label asp-for="DepartureTime" class="control-label"></label>
+        <input asp-for="DepartureTime" class="form-control" /> <!-- Editable Departure Time -->
+    </div>
+
+    <!-- Arrival Time (editable) -->
+    <div class="form-group">
+        <label asp-for="ArrivalTime" class="control-label"></label>
+        <input asp-for="ArrivalTime" class="form-control" /> <!-- Editable Arrival Time -->
+    </div>
+
+    <!-- Price (editable) -->
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" /> <!-- Editable Price -->
+    </div>
+
+    <!-- Save button to submit changes -->
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<!-- Back to Flights button -->
+<div class="form-group">
+    <a asp-controller="Flights" asp-action="Index" class="btn btn-secondary">Back to Flights</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
