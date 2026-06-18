@@ -1,0 +1,21 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.User
+<form method="post">
+    <table>
+        <tr>
+            <td>Username</td>
+            <td>
+                <input asp-for="username" type="text" />
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>Password</td>
+            <td><input asp-for="password" type="password" /></td>
+        </tr>
+
+    </table>
+</form>
+<input type="submit" value="login" />
+@TempData["Msg"]
