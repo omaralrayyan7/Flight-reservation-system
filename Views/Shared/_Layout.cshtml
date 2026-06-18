@@ -1,54 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Bootstrap CSS from CDN for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Flight Reservation System</title>
+    <title>@ViewData["Title"] - FlightReservationApp_f</title>
+
+    <!-- Bootstrap CSS from local path -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FlightReservationApp_f.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> <!-- Custom Site CSS -->
+    <link rel="stylesheet" href="~/FlightReservationApp_f.styles.css" asp-append-version="true" /> <!-- Custom Styles for the app -->
 </head>
 <body>
     <header>
+        <!-- Navbar starts here -->
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Flight Reservation</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Brand name with link to Home -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FlightReservationApp_f</a>
+
+                <!-- Navbar Toggle Button (for mobile view) -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- Navbar Links Section -->
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <!-- Home Link -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
+                        <!-- Privacy Link -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index", "Flights")" class="btn btn-secondary ms-1">Flights</a>
-                            <a href="@Url.Action("Index", "Passengers")" class="btn btn-secondary ms-1">Passengers</a>
-                            <a class="btn btn-secondary ms-1" href="@Url.Action("Index", "FlightPassengers")">Bookings</a>
+
+                        <!-- Navigation Buttons for Flights, Passengers, and Flight Passengers -->
+                        <li>
+                            <a href="@Url.Action("Index", "Flights")" class="btn btn-secondary">Flights</a>
+                            <a href="@Url.Action("Index", "Passengers")" class="btn btn-secondary">Passengers</a>
+
+                            <!-- New Button for Flight Passengers -->
+                            <a class="btn btn-secondary" href="@Url.Action("Index", "FlightPassengers")">Flight Passengers</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Main Content Area -->
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() <!-- Renders the body of the specific page (like Index, Create, etc.) -->
         </main>
     </div>
+
+    <!-- Footer Section -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.Year - Flight Reservation System -
+            &copy; 1446 - FlightReservationApp_f -
             <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- Include JavaScript files -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Render additional scripts defined in individual views -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
