@@ -1,0 +1,43 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.Passenger
+
+@{
+    ViewData["Title"] = "Edit Passenger";
+}
+
+<h1>Edit Passenger</h1>
+
+<h4>Passenger</h4>
+<hr />
+<form asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="PassengerId" class="control-label"></label>
+        <input asp-for="PassengerId" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="FullName" class="control-label"></label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactNumber" class="control-label"></label>
+        <input asp-for="ContactNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<!-- Back button to the Passenger list -->
+<div class="form-group">
+    <a asp-controller="Passengers" asp-action="Index" class="btn btn-secondary">Back to Passengers</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
