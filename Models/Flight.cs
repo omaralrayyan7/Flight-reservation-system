@@ -39,7 +39,7 @@ namespace FlightReservationApp_f.Models
 
         public decimal Price { get; set; }
 
-        // Navigation property for many-to-many with Passenger
+        // Navigation property to associate the flight with passengers (many-to-many relationship)
         public IEnumerable<FlightPassenger>? FlightPassengers { get; set; }
     }
 }
