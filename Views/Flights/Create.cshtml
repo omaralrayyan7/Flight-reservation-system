@@ -1,0 +1,45 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.Flight
+
+@{
+    ViewData["Title"] = "Create Flight"; // Sets the page title
+}
+
+<h1>Create Flight</h1>
+
+<form asp-action="Create">
+    <!-- The form will submit to the 'Create' action of the FlightsController -->
+    <div class="form-group">
+        <label for="FlightNumber">Flight Number</label>
+        <input asp-for="FlightNumber" class="form-control" /> <!-- Field for Flight Number -->
+    </div>
+    <div class="form-group">
+        <label for="Origin">Origin</label>
+        <input asp-for="Origin" class="form-control" /> <!-- Field for Origin -->
+    </div>
+    <div class="form-group">
+        <label for="Destination">Destination</label>
+        <input asp-for="Destination" class="form-control" /> <!-- Field for Destination -->
+    </div>
+    <div class="form-group">
+        <label for="DepartureTime">Departure Time</label>
+        <input asp-for="DepartureTime" class="form-control" /> <!-- Field for Departure Time -->
+    </div>
+    <div class="form-group">
+        <label for="ArrivalTime">Arrival Time</label>
+        <input asp-for="ArrivalTime" class="form-control" /> <!-- Field for Arrival Time -->
+    </div>
+    <div class="form-group">
+        <label for="SeatCapacity">Seat Capacity</label>
+        <input asp-for="SeatCapacity" class="form-control" /> <!-- Field for Seat Capacity -->
+    </div>
+    <div class="form-group">
+        <label for="DepartureLocation">Departure Location</label>
+        <input asp-for="DepartureLocation" class="form-control" /> <!-- Field for Departure Location -->
+    </div>
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" /> <!-- Field for Price -->
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button> <!-- Submit Button -->
+</form>
