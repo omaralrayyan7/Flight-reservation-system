@@ -1,6 +1,8 @@
 using FlightReservationApp_f.Models;
 using FlightReservationApp_f.Data;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FlightReservationApp_f.Controllers
 {
@@ -13,16 +15,22 @@ namespace FlightReservationApp_f.Controllers
             _context = context;
         }
 
-        public IActionResult Index() => View();
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         [HttpGet]
-        public IActionResult SignUp() => View();
+        public IActionResult SignUp()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult SignUp(User user)
         {
-            bool empty = CheckEmpty(user);
-            bool duplicate = CheckUsername(user.username);
+            bool empty = checkEmpty(user);
+            bool duplicate = checkUsername(user.username);
 
             if (empty)
             {
@@ -30,39 +38,47 @@ namespace FlightReservationApp_f.Controllers
                 {
                     _context.User.Add(user);
                     _context.SaveChanges();
-                    TempData["Msg"] = "Registration successful!";
-                    return RedirectToAction("Login");
+
+                    TempData["Msg"] = "the data was saved";
+                    return View();
                 }
                 else
                 {
-                    TempData["Msg"] = "Username already taken.";
+                    TempData["Msg"] = "please fill the username";
                     return View();
                 }
             }
             else
             {
-                TempData["Msg"] = "Please fill all fields.";
+                TempData["Msg"] = "please fill all input";
                 return View();
             }
         }
-
-        private bool CheckUsername(string username)
+        public bool checkUsername(string username)
         {
-            var user = _context.User.Where(u => u.username.Equals(username)).FirstOrDefault();
-            return user == null; // true = username is available
+            User user = _context.User.Where(u => u.username.Equals(username)).FirstOrDefault();
+            if (user != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
-        private bool CheckEmpty(User user)
+        private bool checkEmpty(User user)
         {
-            if (string.IsNullOrEmpty(user.username)) return false;
-            if (string.IsNullOrWhiteSpace(user.username)) return false;
-            if (string.IsNullOrEmpty(user.password)) return false;
-            return true;
+            if (String.IsNullOrEmpty(user.username)) return false;
+            else if (String.IsNullOrEmpty(user.username.Trim())) return false;
+            else return true;
         }
 
         [HttpGet]
-        public IActionResult Login() => View();
-
+        public IActionResult Login()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult Login(Login userlogin)
         {
@@ -70,25 +86,38 @@ namespace FlightReservationApp_f.Controllers
             {
                 string username = userlogin.username;
                 string password = userlogin.password;
+                User user = _context.User.Where(
+                      u => u.username.Equals(username) &&
+                      u.password.Equals(password)
+                      ).FirstOrDefault();
 
-                User? user = _context.User
-                    .Where(u => u.username.Equals(username) && u.password.Equals(password))
-                    .FirstOrDefault();
+                Admin admin = _context.Admin.Where(
+                    u => u.username.Equals(username) &&
+                    u.password.Equals(password)
+                    ).FirstOrDefault();
 
-                Admin? admin = _context.Admin
-                    .Where(u => u.username.Equals(username) && u.password.Equals(password))
-                    .FirstOrDefault();
 
                 if (user != null)
-                    return RedirectToAction("Index", "Flights");
+                {
+                    return RedirectToAction("");
+                }
                 else if (admin != null)
-                    return RedirectToAction("Index", "Flights");
-                else
-                    TempData["Msg"] = "Invalid username or password.";
+                {
+
+                    return RedirectToAction("f");
+                }
+            }
+            else
+            {
+                TempData["Msg"] = "The user not found";
             }
             return View();
         }
 
-        public IActionResult TeamList() => View();
+        public IActionResult TeamList()
+        {
+            return View();
+        }
+
     }
 }
