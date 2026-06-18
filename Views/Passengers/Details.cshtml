@@ -1,0 +1,40 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.Passenger
+
+@{
+    ViewData["Title"] = "Passenger Details";
+}
+
+<h1>Passenger Details</h1>
+
+<div>
+    <h4>Passenger Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PassengerId" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
