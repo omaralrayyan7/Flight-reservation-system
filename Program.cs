@@ -8,8 +8,6 @@ builder.Services.AddDbContext<DataContext>(options =>
         ?? throw new InvalidOperationException("Connection string 'DataContext' not found.")));
 
 builder.Services.AddControllersWithViews();
-
-// Enable session
 builder.Services.AddSession();
 
 var app = builder.Build();
