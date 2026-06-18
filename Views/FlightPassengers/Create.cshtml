@@ -1,0 +1,47 @@
+@using FlightReservationApp_f.Models
+@model FlightReservationApp_f.Models.FlightPassenger
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>FlightPassenger</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <!-- Validation summary to display model errors -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- FlightId Dropdown -->
+            <div class="form-group">
+                <label asp-for="FlightId" class="control-label"></label>
+                <select asp-for="FlightId" class="form-control" asp-items="ViewBag.FlightId"></select>
+            </div>
+
+            <!-- PassengerId Dropdown -->
+            <div class="form-group">
+                <label asp-for="PassengerId" class="control-label"></label>
+                <select asp-for="PassengerId" class="form-control" asp-items="ViewBag.PassengerId"></select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Back to the list of FlightPassengers -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
